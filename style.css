@@ -1,0 +1,147 @@
+/* This file contains custom CSS that works alongside Tailwind CSS.
+You can add your own styles here.
+*/
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.hero-section {
+    /* Solid black background */
+    background-color: #000000;
+}
+
+.typewriter-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.5rem; /* Adjust height to match font size */
+    background-color: #E5E5E5; /* light-gray */
+    animation: blink 0.7s infinite;
+}
+
+/* Blinking animation for the cursor */
+@keyframes blink {
+    0%, 100% { 
+        opacity: 1; 
+    }
+    50% { 
+        opacity: 0; 
+    }
+}
+
+/* --- Drone Animation Styles --- */
+
+/* Container for the drone SVG to position it in the background */
+.drone-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+/* Styling for the SVG drone itself */
+.drone-svg {
+    stroke: #E5E5E5; /* light-gray */
+    fill: #E5E5E5;   /* light-gray */
+    stroke-width: 2px;
+}
+
+/* Base class for all propellers */
+.propeller {
+    animation: spin 0.2s linear infinite;
+}
+
+/* Specific rotation points for each propeller */
+.propeller-tl {
+    transform-origin: 25.5px 35.5px;
+}
+.propeller-tr {
+    transform-origin: 102.5px 35.5px;
+}
+.propeller-bl {
+    transform-origin: 26.5px 91.5px;
+}
+.propeller-br {
+    transform-origin: 101.5px 91.5px;
+}
+
+
+/* Spinning animation for the propellers */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Project Card Animated Border --- */
+.project-card .animated-border {
+    position: absolute;
+    background: #FCA311; /* accent-yellow */
+    box-shadow: 0 0 10px #FCA311, 0 0 20px #FCA311;
+    transition: all 0.3s ease-in-out;
+}
+
+.project-card .top, .project-card .bottom {
+    height: 2px;
+    width: 0;
+}
+
+.project-card .left, .project-card .right {
+    width: 2px;
+    height: 0;
+}
+
+.project-card .top { top: 0; left: 0; }
+.project-card .right { top: 0; right: 0; }
+.project-card .bottom { bottom: 0; right: 0; }
+.project-card .left { bottom: 0; left: 0; }
+
+.project-card:hover .top, .project-card:hover .bottom {
+    width: 100%;
+}
+
+.project-card:hover .left, .project-card:hover .right {
+    height: 100%;
+}
+
+/* --- Event Card Shine Effect --- */
+.event-card {
+    position: relative;
+    overflow: hidden; /* This is crucial for the shine effect */
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px); /* Optional: lifts the card slightly on hover */
+}
+
+.event-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 45%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 55%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(-45deg) translateX(-75%);
+    transition: transform 0.7s ease;
+    z-index: 1;
+}
+
+.event-card:hover::before {
+    transform: rotate(-45deg) translateX(75%);
+}
